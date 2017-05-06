@@ -338,7 +338,7 @@ if (time < nao) {
 
 	const _child_process = require('child_process');
 
-	let log_process = _child_process.exec('git log --since="' + _git_date(time) + '"', {
+	let log_process = _child_process.exec('git log --since="' + _git_date(time) + '" --decorate=no', {
 		cwd: process.cwd(),
 		env: process.env
 	}, function(err, stdout, stderr) {
