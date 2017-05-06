@@ -50,37 +50,37 @@ const _is_leap_year = function(date) {
  */
 
 const _NUMBERS = {
-	0: [ 'zero' ],
-	1: [ 'a', 'one' ],
-	2: [ 'two' ],
-	3: [ 'three' ],
-	4: [ 'four' ],
-	5: [ 'five' ],
-	6: [ 'six' ],
-	7: [ 'seven' ],
-	8: [ 'eight' ],
-	9: [ 'nine' ],
-	10: [ 'ten' ],
-	11: [ 'eleven' ],
-	12: [ 'twelve' ],
-	13: [ 'thirteen' ],
-	14: [ 'fourteen' ],
-	15: [ 'fifteen' ],
-	16: [ 'sixteen' ],
-	17: [ 'seventeen' ],
-	18: [ 'eighteen' ],
-	19: [ 'nineteen' ],
-	20: [ 'twenty' ],
-	21: [ 'twenty-one' ],
-	22: [ 'twenty-two' ],
-	23: [ 'twenty-three' ],
-	24: [ 'twenty-four' ],
-	25: [ 'twenty-five' ],
-	26: [ 'twenty-six' ],
-	27: [ 'twenty-seven' ],
-	28: [ 'twenty-eight' ],
-	29: [ 'twenty-nine' ],
-	30: [ 'thirty' ]
+	0: [ '0', 'zero' ],
+	1: [ '1', 'a', 'one' ],
+	2: [ '2', 'two' ],
+	3: [ '3', 'three' ],
+	4: [ '4', 'four' ],
+	5: [ '5', 'five' ],
+	6: [ '6', 'six' ],
+	7: [ '7', 'seven' ],
+	8: [ '8', 'eight' ],
+	9: [ '9', 'nine' ],
+	10: [ '10', 'ten' ],
+	11: [ '11', 'eleven' ],
+	12: [ '12', 'twelve' ],
+	13: [ '13', 'thirteen' ],
+	14: [ '14', 'fourteen' ],
+	15: [ '15', 'fifteen' ],
+	16: [ '16', 'sixteen' ],
+	17: [ '17', 'seventeen' ],
+	18: [ '18', 'eighteen' ],
+	19: [ '19', 'nineteen' ],
+	20: [ '20', 'twenty' ],
+	21: [ '21', 'twenty-one' ],
+	22: [ '22', 'twenty-two' ],
+	23: [ '23', 'twenty-three' ],
+	24: [ '24', 'twenty-four' ],
+	25: [ '25', 'twenty-five' ],
+	26: [ '26', 'twenty-six' ],
+	27: [ '27', 'twenty-seven' ],
+	28: [ '28', 'twenty-eight' ],
+	29: [ '29', 'twenty-nine' ],
+	30: [ '30', 'thirty' ]
 };
 
 const _NUMBERS_KEYS = Object.keys(_NUMBERS);
@@ -294,6 +294,29 @@ if (args.length === 1) {
 							time.setDate(time.getDate() - 1);
 							time.setHours(24 - (number - hours));
 							remaining = 0;
+
+						}
+
+					}
+
+				} else if (/^(minute|minutes)$/g.test(args[1])) {
+
+					let minutes = time.getMinutes();
+					if (minutes > number) {
+						time.setMinutes(minutes - number);
+					} else {
+
+						let hours = time.getHours();
+						if (hours === 0) {
+
+							time.setDate(time.getDate() - 1);
+							time.setHours(24);
+							time.setMinutes(60 - (number - minutes));
+
+						} else {
+
+							time.setHours(time.getHours() - 1);
+							time.setMinutes(60 - (number - minutes));
 
 						}
 
