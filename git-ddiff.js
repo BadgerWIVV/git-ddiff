@@ -360,7 +360,7 @@ if (time < nao) {
 				// diff.stdout.pipe(process)
 				// will lead to endless loop, wtf.
 
-				let diff = _child_process.exec('git diff ' + hashes[0], {
+				let diff = _child_process.exec('git diff ' + hashes[hashes.length - 1], {
 					cwd: process.cwd(),
 					env: process.env,
 					stdio: [
