@@ -50,6 +50,15 @@ git ddiff twenty-two hours ago;
 git ddiff thirty minutes ago;
 ```
 
+**Advanced Usage**
+
+This might be obvious for some, but unknown to many.
+You can use VIM to read a highlighted diff like so:
+
+```bash
+git ddiff yesterday morning | vim -;
+```
+
 # Installation
 
 - Requirement is `node` v6 or newer (with const/let/arrow function support)
