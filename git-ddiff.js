@@ -124,7 +124,7 @@ if (args.length === 1) {
 
 	}
 
-// git ddiff yesterday morning
+// git ddiff today morning
 // git ddiff yesterday evening
 } else if (args.length === 2) {
 
@@ -156,25 +156,26 @@ if (args.length === 1) {
 
 		}
 
-
-		if (args[1] === 'morning') {
-			time.setHours(8);
-			time.setMinutes(00);
-		} else if (args[1] === 'noon') {
-			time.setHours(12);
-			time.setMinutes(00);
-		} else if (args[1] === 'evening') {
-			time.setHours(18);
-			time.setMinutes(00);
-		} else if (args[1] === 'night') {
-			time.setHours(22);
-			time.setMinutes(00);
-		} else if (args[1] === 'midnight') {
-			time.setHours(23);
-			time.setMinutes(59);
-		}
-
 	}
+
+
+	if (args[1] === 'morning') {
+		time.setHours(8);
+		time.setMinutes(00);
+	} else if (args[1] === 'noon') {
+		time.setHours(12);
+		time.setMinutes(00);
+	} else if (args[1] === 'evening') {
+		time.setHours(18);
+		time.setMinutes(00);
+	} else if (args[1] === 'night') {
+		time.setHours(22);
+		time.setMinutes(00);
+	} else if (args[1] === 'midnight') {
+		time.setHours(23);
+		time.setMinutes(59);
+	}
+
 
 // git ddiff a week ago
 // git ddiff two weeks ago
@@ -338,7 +339,7 @@ if (time < nao) {
 
 	const _child_process = require('child_process');
 
-	let log_process = _child_process.exec('git log --since="' + _git_date(time) + '" --decorate=no', {
+	let log_process = _child_process.exec('git log --since="' + _git_date(time) + '" --decorate=no --pretty=oneline', {
 		cwd: process.cwd(),
 		env: process.env
 	}, function(err, stdout, stderr) {
@@ -350,7 +351,18 @@ if (time < nao) {
 
 		} else {
 
-			let hashes = stdout.trim().split('\n').map(v => v.split(' ')[0].trim()).filter(v => v !== '');
+			let hashes = stdout.trim().split('\n').map(function(line) {
+
+				let hash  = null;
+				let words = line.split(' ').map(w => w.trim());
+				if (words.length > 0) {
+					hash = words.find(val => /^([a-z0-9]+)$/g.test(val)) || null;
+				}
+
+				return hash;
+
+			}).filter(val => val !== null);
+
 			if (hashes.length > 0) {
 
 				// XXX: Piping is fucked up in nodejs
