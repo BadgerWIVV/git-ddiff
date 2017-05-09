@@ -1,0 +1,26 @@
+{
+  "name": "git-ddiff",
+  "version": "0.0.1",
+  "description": "A better git diff for humans with lack of memory",
+  "main": "git-ddiff.js",
+  "bin": {
+	  "git-ddiff": "git-ddiff.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cookiengineer/git-ddiff.git"
+  },
+  "keywords": [
+    "git",
+    "diff"
+  ],
+  "author": "Cookie Engineer",
+  "license": "GPL-2.0",
+  "bugs": {
+    "url": "https://github.com/cookiengineer/git-ddiff/issues"
+  },
+  "homepage": "https://github.com/cookiengineer/git-ddiff#readme"
+}

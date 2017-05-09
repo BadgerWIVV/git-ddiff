@@ -61,13 +61,25 @@ git ddiff yesterday morning | vim -;
 
 # Installation
 
-- Requirement is `node` v6 or newer (with const/let/arrow function support)
+**Installation via NPM**
+
+Install the package `git-ddiff` via NPM:
 
 ```bash
-cd /path/to/git-ddiff-folder;
+sudo npm install -g git-ddiff;
+```
 
-sudo cp ./git-ddiff.js /usr/bin/git-ddiff;
-sudo chmod +x /usr/bin/git-ddiff;
+Make sure to restart your Terminal afterwards to see the effect.
+
+**Manual Installation**
+
+Only requirement is `nodejs >= 6.0.0` with `const`, `let`, and `arrow function` support.
+
+```bash
+curl -sSL https://raw.githubusercontent.com/cookiengineer/git-ddiff/master/git-ddiff.js > git-ddiff.js;
+
+sudo mv ./git-ddiff.js /usr/local/bin/git-ddiff;
+sudo chmod +x /usr/local/bin/git-ddiff;
 ```
 
 # License
